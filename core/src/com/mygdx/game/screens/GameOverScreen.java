@@ -1,20 +1,21 @@
 package com.mygdx.game.screens;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.core.screens.BaseScreen;
 import com.mygdx.game.entities.CustomButton;
 import com.mygdx.game.helpers.CustomButtonSyles;
+import com.mygdx.game.entities.CustomImage;
+import com.mygdx.game.helpers.AssetsManager;
 
-public class CreditsScreen extends BaseScreen {
-
-    private CustomButton btnBack;
-    private Label lblCredits;
+public class GameOverScreen extends BaseScreen {
+    CustomButton btnBack;
+    private Image imgGameOver;
 
     @Override
     protected void init() {
@@ -26,12 +27,9 @@ public class CreditsScreen extends BaseScreen {
                 MyGdxGame.instance.setScreen(new MenuScreen());
             }
         });
-        Label.LabelStyle styleLbl = new Label.LabelStyle();
-        styleLbl.fontColor = Color.SKY;
-        styleLbl.font = new BitmapFont();
-        lblCredits = new Label("UPC GAA!",styleLbl);
-        lblCredits.setPosition(20,100);
-        addActor(lblCredits);
+        imgGameOver = new CustomImage(AssetsManager.getAssetManager().get("gameover.png", Texture.class),new Vector2());
+        imgGameOver.setPosition(Gdx.graphics.getWidth()/2-imgGameOver.getWidth()/2,Gdx.graphics.getHeight()/2-imgGameOver.getHeight()/2);
+        addActor(imgGameOver);
         addActor(btnBack);
     }
 
